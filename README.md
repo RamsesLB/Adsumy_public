@@ -4,7 +4,7 @@ Plataforma para sindicatos, juntas de vecinos, centros de padres, cursos y otras
 
 Sitio: [www.adsumy.com](https://www.adsumy.com)
 
-Hay tres superficies que hablan con la misma API:
+Hay dos superficies que hablan con la misma API:
 
 - **Panel web** para quien dirige la organización (dueño, administración y delegación).
 - **App Android** (Kotlin y Jetpack Compose) para miembros: asistencia, noticias, votaciones, mensajes, foro y formularios.
@@ -74,8 +74,8 @@ Registro con verificación de correo, recuperación de contraseña y verificaci�
 
 ```text
   Navegador          App Android           App iPhone
-       \                  |                    /
-        \                 |                   /
+       |                  |                  |
+       |                  |                  |
          +-------- API Next.js (Render) -----+
                          |
          +---------------+---------------+
@@ -92,10 +92,9 @@ Registro con verificación de correo, recuperación de contraseña y verificaci�
 | **Cloudflare (DNS y proxy)** | Dominio `adsumy.com`. El apex redirige a `www`. |
 | **Cloudflare Turnstile** | Antibot en inicio de sesión, registro, recuperación de contraseña, formularios públicos, contacto y solicitud de eliminación de cuenta. No recibe el padrón ni la contraseña. |
 | **Cloudflare R2** | Archivos e imágenes de la organización cuando el almacenamiento no está en el disco del servidor. Los objetos se sirven solo con sesión, a través de la API. |
-| **Cloudflare Workers** | Cron cada 10 minutos. Mantiene despierto el servicio de Render en horario de Chile y, de madrugada, dispara el cierre de períodos vencidos (archivo de organizaciones o cobro). El Worker solo llama a la API; no lee la base ni el padrón. |
+| **Cloudflare Workers** | Dispara el cierre de períodos vencidos (archivo de organizaciones o cobro). El Worker solo llama a la API; no lee la base ni el padrón. |
 | **Cloudflare Email Obfuscation** | Ofusca correos en el HTML público. Las direcciones legales van marcadas para seguir siendo legibles. |
 | **Resend** | Correos de producto: activación de cuenta, invitaciones, restablecer contraseña y avisos. El cuerpo no incluye RUT ni el padrón. |
-| **SMTP propio** | Formulario de contacto y solicitudes de privacidad (`contacto`, `soporte`, `privacidad`). |
 | **Firebase Cloud Messaging** | Push a Android y al navegador. El texto es genérico («Tienes un mensaje», «Tienes un aviso»). |
 | **Transbank Oneclick** | Inscripción de tarjeta y cobro del plan en producción. Transbank no recibe el padrón. |
 | **Google AdSense y AdMob** | Publicidad del plan gratuito, después del consentimiento. |
@@ -110,42 +109,49 @@ Capturas en [`media/`](./media/).
 
 ### Panel web
 
+##### Landing 
 <p align="center">
   <img src="./media/01_landing_1.png" alt="Página de inicio de Adsumy" width="900" />
 </p>
 
+##### Inicio
 <p align="center">
   <img src="./media/02_inicio_1.png" alt="Inicio del panel de la organización" width="900" />
 </p>
 
+##### Miembros
 <p align="center">
   <img src="./media/02_miembros_1.png" alt="Gestión de miembros" width="900" />
 </p>
 
+##### Asistencia
+<p align="center">
+  <img src="./media/03_asistencia_2.png" alt="Registro de asistencia" width="900" />
+</p>
 <p align="center">
   <img src="./media/03_asistencia_1.png" alt="Asistencia en la reunión" width="900" />
 </p>
 
-<p align="center">
-  <img src="./media/03_asistencia_2.png" alt="Registro de asistencia" width="900" />
-</p>
-
+##### Votación
 <p align="center">
   <img src="./media/04_votacion_1.png" alt="Votación en curso" width="900" />
 </p>
 
-### Foro y mensajes
 
-<p align="center">
-  <img src="./media/09_foro_temas_1.jpg" alt="Foro de la organización" width="900" />
-</p>
 
-<p align="center">
-  <img src="./media/10_mensajes_grupo_1.jpg" alt="Mensajes de grupo" width="900" />
-</p>
 
 ### App Android
-
+##### Inicio
 <p align="center">
   <img src="./media/08_android_inicio.jpg" alt="Inicio de la app Android" width="360" />
+
+##### Foro
+  <p align="center">
+  <img src="./media/09_foro_temas_1.jpg" alt="Foro de la organización" width="360" />
+</p>
+
+##### Mensajes
+<p align="center">
+  <img src="./media/10_mensajes_grupo_1.jpg" alt="Mensajes de grupo" width="360" />
+</p>
 </p>
