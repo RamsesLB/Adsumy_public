@@ -105,8 +105,6 @@ Los datos de una organización no se usan para otra, ni para entrenar modelos. E
 
 ## Demostración visual
 
-Capturas en [`media/`](./media/).
-
 ### Panel web
 
 ##### Landing 
