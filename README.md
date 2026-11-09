@@ -72,20 +72,6 @@ Registro con verificación de correo, recuperación de contraseña y verificaci�
 
 ## Sistemas conectados
 
-```text
-  Navegador          App Android           App iPhone
-       |                  |                  |
-       |                  |                  |
-         +-------- API Next.js (Render) -----+
-                         |
-         +---------------+---------------+
-         |               |               |
-    PostgreSQL     Cloudflare R2     correo y push
-                         |
-              Cloudflare Workers
-              (keep-alive y vencimientos)
-```
-
 | Sistema | Para qué se usa |
 |---------|-----------------|
 | **Render** | Aloja el panel, la API y PostgreSQL. Un servicio de desarrollo y otro público. |
